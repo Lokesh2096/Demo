@@ -1,0 +1,12 @@
+<p>my-orders works!</p>
+<ng-container *ngIf='selectedOrder'>
+    {{selectedOrder.label}} <br>
+    {{selectedOrder.items}} <br>
+    {{selectedOrder.id}} <br>
+    {{selectedOrder.delivery_type}} 
+</ng-container>
+<ng-container *ngIf='!selectedOrder'>
+    <h1>
+        Sorry No Orders Related to your id
+    </h1>
+</ng-container>

@@ -1,0 +1,39 @@
+<!-- Hi My name is lokesh -->
+<!-- {{today}} -->
+<!-- {{today | date:'dd/MM/yyyy'}}
+{{getDate()}} -->
+<ng-container>
+  <h1 *ngFor="let item of oops;let i = index">
+  <ng-container *ngIf='i > 2'>
+    {{i | number :'1.3-4'}}
+
+      {{item.a}} {{item.b | currency:'USD'}}
+  </ng-container>
+  
+  </h1>
+  <ng-container *ngIf='show'>
+    I am Show {{show}}
+  </ng-container>
+  <button (click)='show=!show'>button</button>
+  <router-outlet></router-outlet>
+</ng-container>
+<input type="text" [(ngModel)]='yourName'  name='name'>
+{{yourName}}
+<app-my-profile [giveName]='yourName' (getDate)='afterGettingDate($event)'></app-my-profile>
+
+<div>
+  <a href="javascript:void(0)" [routerLink]='["mytodo/abcd","COD"]' >GO to Create Tasks</a>
+
+  <a href="javascript:void(0)" [routerLink]='["my-orders","COD"]' [queryParams]="{'id':2,'type':'COD'}" >GO to orders</a>
+
+<button (click)='goToOrders()'>Go to orders</button>
+  <button [class.btn-danger]='yourName == "subarata"' >Delete</button>
+
+  <button [ngClass]='{"btn-danger":yourName == "subarata"}' >Delete</button>
+
+  <button [style.background-color]="style1 ? 'red' : 'green'" (click)='style1 = !style1' >Delete</button>
+
+  <button [ngStyle]="{'background-color': style1 ? 'red' : 'green' }" (click)='style1 = !style1' >Delete</button>
+</div>
+<simple-notifications></simple-notifications>
+
