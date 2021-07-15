@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,10 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  constructor(private date:DatePipe,private router:Router){
+  constructor(private date:DatePipe,private router:Router,protected DOM: DomSanitizer){
 
   }
-  yourName = 'Subrata';
+  youtubeLink = 'https://www.youtube.com/embed/87fTHhPVdE4';
+  yourName = 'Hi how are you';
   ngOnInit(){
     // this.today = this.date.transform(this.today,'full');
   }
@@ -20,6 +22,9 @@ export class AppComponent implements OnInit{
   }
   ngAfterViewChecked(){
    // console.log('VIEW CHANGWED')
+  }
+  bypass(url){
+    return this.DOM.bypassSecurityTrustResourceUrl(url);
   }
 addto(){
   
