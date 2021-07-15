@@ -14,12 +14,15 @@ import { SharedService } from './sharedServices/shared.service';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment'; 
+import { environment } from '../environments/environment';
+import { LinkPipe, safePipe } from './pipes/link.pipe'; 
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
     NotFoundComponent,
+    LinkPipe,
+    safePipe
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,7 @@ import { environment } from '../environments/environment';
      }),
     
   ],
-  providers: [DatePipe,SharedService],
+  providers: [DatePipe,SharedService,LinkPipe,safePipe],
   exports:[],
   entryComponents:[],
   bootstrap: [AppComponent]
