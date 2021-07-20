@@ -4,7 +4,7 @@
 {{getDate()}} -->
 
 
-<ng-container *ngIf='isLoggedIn'>
+<!-- <ng-container *ngIf='isLoggedIn'>
   <h3>I am Logged in</h3>
 </ng-container>
 <ng-container *ngIf='!isLoggedIn'>
@@ -57,6 +57,7 @@
   <button [style.background-color]="style1 ? 'red' : 'green'" (click)='style1 = !style1' >Delete</button>
 
   <button [ngStyle]="{'background-color': style1 ? 'red' : 'green' }" (click)='style1 = !style1' >Delete</button>
-</div>
+</div> -->
+<router-outlet></router-outlet>
 <simple-notifications></simple-notifications>
 

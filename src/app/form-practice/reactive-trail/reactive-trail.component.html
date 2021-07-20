@@ -1,0 +1,52 @@
+
+<form [formGroup]='information' (ngSubmit)='showValue(information)'>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+        <input type="email" class="form-control" formControlName='email' id='exampleFormControlInput1' placeholder="name@example.com">
+        <div *ngIf='information.get("email").errors && (information.get("email").touched || information.get("email").dirty)'>
+            <ng-container *ngIf='information.get("email").errors?.minlength'>
+                Please Enter at least 5 Character Value
+            </ng-container>
+            <ng-container *ngIf='information.get("email").errors?.required'>
+                Please choose a username.
+            </ng-container>
+            
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Enter Mobile number</label>
+        <input type="text" class="form-control" formControlName='phone' id='exampleFormControlTextarea1'  placeholder="plz enter your mobile number">
+      </div>
+      <div formGroupName='address'>
+          <h1>Address</h1>
+          <div class="mb-3">
+            <label for="exampleFormControlInput3" class="form-label">line1</label>
+            <input type="email" class="form-control" formControlName='line1' id='exampleFormControlInput3' placeholder="line1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea4" class="form-label">line2</label>
+            <input type="text" class="form-control" formControlName='line2' id='exampleFormControlTextarea4'  placeholder="line2">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea5" class="form-label">LandMark</label>
+            <input type="text" class="form-control" formControlName='landmark' id='exampleFormControlTextarea5'  placeholder="LandMArk">
+          </div>
+      </div>
+      <div>
+          Are you Agreed
+          <input type="checkbox" formControlName='isAgreed'>
+          <ng-container *ngIf='information.get("isAgreed").errors?.required'>
+            This value is required
+        </ng-container>
+      </div>
+      <div>
+          <div class="mr-1">
+              <button type="submit">Save</button>
+          </div>
+          <div class="mr-1"><button  type="button" (click)='markTouch(information)'>Load Data</button></div>
+          <div class="mr-1"><button  type="button">Reset</button></div>
+
+      </div>
+</form>
+{{information.valid}}
+{{information.value | json}}
