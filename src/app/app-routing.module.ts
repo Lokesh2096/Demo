@@ -25,7 +25,8 @@ const routes: Routes = [
   },
   {    path: 'recforms', component: ReactiveTrailComponent},
   {
-    path: '', component: HeroesComponent
+    path: '', component: ReactiveTrailComponent
+    //HeroesComponent
   },
   {
     path: 'mytodo',
