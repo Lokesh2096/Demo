@@ -2,20 +2,38 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { SharedService } from './sharedServices/shared.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  constructor(private date:DatePipe,private router:Router,protected DOM: DomSanitizer){
 
+export class AppComponent implements OnInit{
+  isLoggedIn = false;
+  login:any;
+  name:any;
+  constructor(private date:DatePipe,private router:Router,protected DOM: DomSanitizer,public shared:SharedService){
+   this.shared.isLoggedin.subscribe((data)=>{
+      console.log('In event Emitter');
+      if(data){
+        // api -> name
+
+        this.isLoggedIn = true;
+      }else{
+        // api -> name
+        this.isLoggedIn = false;
+      }
+    });
   }
   youtubeLink = 'https://www.youtube.com/embed/87fTHhPVdE4';
   yourName = 'Hi how are you';
   ngOnInit(){
     // this.today = this.date.transform(this.today,'full');
+  }
+  ngOnDestroy(){
+   // this.login.unsubscribe();
   }
   ngAfterViewInit(){
     console.log('AfterViewInit');

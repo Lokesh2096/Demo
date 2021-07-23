@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { LinkPipe, safePipe } from './pipes/link.pipe'; 
+import { FormPracticeModule } from './form-practice/form-practice.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { LinkPipe, safePipe } from './pipes/link.pipe';
     AppRoutingModule,
     FormsModule,
     NgbModule,
+    FormPracticeModule,
     MyaccountModule,
     TodoModule,
     ServiceWorkerModule.register('ngsw-worker.js', {

@@ -1,0 +1,81 @@
+
+<form [formGroup]='information' (ngSubmit)='showValue(information)'>
+  <div class="mb-3">
+    <label for="phone">phone</label>
+    <input type="radio" name="type"  formControlName='type' id="phone" value="phone">
+    <label for="email">Email</label>
+    <input type="radio" name="type"   formControlName='type' id="email" value="email">
+  </div>
+
+
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+        <input type="email" (blur)='showValidationError(information)' class="form-control" formControlName='email' id='exampleFormControlInput1' placeholder="name@example.com">
+        <ng-container *ngIf='Errors.email'>
+          <div [innerHTML]='Errors.email'>
+
+          </div>
+        </ng-container>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Enter Mobile number</label>
+        <input type="text" (blur)='showValidationError(information)' class="form-control" formControlName='phone' id='exampleFormControlTextarea1'  placeholder="plz enter your mobile number">
+        <div *ngIf='Errors.phone'>
+          {{Errors.phone}}
+        </div>
+      </div>
+      <div formGroupName='address'>
+          <h1>Address</h1>
+          <div class="mb-3">
+            <label for="exampleFormControlInput3" class="form-label">line1</label>
+            <input type="email" (blur)='showValidationError(information)' class="form-control" formControlName='line1' id='exampleFormControlInput3' placeholder="line1">
+            <div *ngIf='Errors.line1'>
+              {{Errors.line1}}
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea4" class="form-label">line2</label>
+            <input type="text" (blur)='showValidationError(information)' class="form-control" formControlName='line2' id='exampleFormControlTextarea4'  placeholder="line2">
+            <div *ngIf='Errors.line2'>
+              {{Errors.line2}}
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea5" class="form-label">LandMark</label>
+            <input type="text" (blur)='showValidationError(information)' class="form-control" formControlName='landmark' id='exampleFormControlTextarea5'  placeholder="LandMArk">
+            <div *ngIf='Errors.landmark'>
+              {{Errors.landmark}}
+            </div>
+          </div>
+      </div>
+      <div>
+          Are you Agreed
+          <input type="checkbox" (change)='showValidationError(information)' formControlName='isAgreed'>
+
+          <div *ngIf='Errors.isAgreed'>
+            {{Errors.isAgreed}}
+          </div>
+      </div>
+      <div>
+          <div class="mr-1">
+              <button type="submit">Save</button>
+          </div>
+          <div class="mr-1"><button  type="button" (click)='loadData()'>Load Data</button></div>
+          <div class="mr-1"><button  type="button" (click)='resetMyForm()'>Reset</button></div>
+          <div><button type='button' (click)='setValidationsOnPhone()'>
+            Set Phone Validation
+          </button></div>
+          <div><button type='button' (click)='removeValidationsOnPhone()'>
+            Remove Phone Validation
+          </button></div>
+          <div>
+            <button type='button' (click)='getValue()'>
+              SHOW
+            </button>
+          </div>
+        
+
+      </div>
+</form>
+{{information.valid}} <br>
+{{information.value | json}}

@@ -2,6 +2,15 @@
 <!-- {{today}} -->
 <!-- {{today | date:'dd/MM/yyyy'}}
 {{getDate()}} -->
+
+
+<!-- <ng-container *ngIf='isLoggedIn'>
+  <h3>I am Logged in</h3>
+</ng-container>
+<ng-container *ngIf='!isLoggedIn'>
+  <h3>I am Logged out</h3>
+</ng-container>
+
 <ng-container>
   <h1 *ngFor="let item of oops;let i = index">
   <ng-container *ngIf='i > 2'>
@@ -23,10 +32,22 @@
 {{yourName}}
 <app-my-profile [giveName]='yourName' (getDate)='afterGettingDate($event)'></app-my-profile>
 
+
+<div class="login logout">
+  <button (click)='shared.login()'>login</button>
+  <button (click)='shared.logout()'>logout</button>
+  <button routerLink='/myaccount/offers'>MyAccount</button>
+</div>
+
 <div>
   <a href="javascript:void(0)" [routerLink]='["mytodo/abcd","COD"]' >GO to Create Tasks</a>
 
   <a href="javascript:void(0)" [routerLink]='["my-orders","COD"]' [queryParams]="{'id':2,'type':'COD'}" >GO to orders</a>
+
+
+
+
+
 
 <button (click)='goToOrders()'>Go to orders</button>
   <button [class.btn-danger]='yourName == "subarata"' >Delete</button>
@@ -36,6 +57,7 @@
   <button [style.background-color]="style1 ? 'red' : 'green'" (click)='style1 = !style1' >Delete</button>
 
   <button [ngStyle]="{'background-color': style1 ? 'red' : 'green' }" (click)='style1 = !style1' >Delete</button>
-</div>
+</div> -->
+<router-outlet></router-outlet>
 <simple-notifications></simple-notifications>
 
