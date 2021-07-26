@@ -17,13 +17,18 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { LinkPipe, safePipe } from './pipes/link.pipe'; 
 import { FormPracticeModule } from './form-practice/form-practice.module';
+import { LineonePipe } from './pipes/lineone.pipe';
+import { HeaderComponent } from './header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
     NotFoundComponent,
     LinkPipe,
-    safePipe
+    safePipe,
+    LineonePipe,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +37,7 @@ import { FormPracticeModule } from './form-practice/form-practice.module';
     NgbModule,
     FormPracticeModule,
     MyaccountModule,
+    HttpClientModule,
     TodoModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

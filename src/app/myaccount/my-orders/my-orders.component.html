@@ -1,3 +1,4 @@
+
 <p>my-orders works!</p>
 <ng-container *ngIf='selectedOrder'>
     {{selectedOrder.label}} <br>
@@ -5,6 +6,20 @@
     {{selectedOrder.id}} <br>
     {{selectedOrder.delivery_type}} 
 </ng-container>
+
+
+<!-- <ng-container *ngIf='selectedOrders.length > 2'> -->
+    <ng-container *ngFor='let order of selectedOrders;let i = index'>
+        index of this order is {{i}}
+        {{order.label}} <br>
+    {{order.items}} <br>
+    {{order.id}} <br>
+    {{order.delivery_type}}
+    </ng-container>
+     
+<!-- </ng-container> -->
+
+
 <ng-container *ngIf='!selectedOrder'>
     <h1>
         Sorry No Orders Related to your id
