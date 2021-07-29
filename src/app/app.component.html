@@ -1,4 +1,10 @@
 <!-- Hi My name is lokesh -->
+{{'Lorem ipsum dummy text' | link : true}}
+{{today | date:'shortDate'}} <br>
+fullDate -> {{getDate()}} 
+{{'3' | currency:'OMR'}}
+
+
 <!-- {{today}} <br>
 {{today | date:'short'}} <br>
 {{getDate()}}  -->
@@ -63,6 +69,13 @@
 <a href="javascript:void(0)" routerLink='{{"my orders/ORD123" | link}}' [queryParams]="{'id':2,'type':'COD'}" >GO to orders</a>
 <a href="javascript:void(0)" (click)='goToOrders()' >GO to orders click</a> -->
 
+
+
+
+<br>
+<input type="text" [(ngModel)]='yourName'  name='name'>
+
+<!-- <app-my-profile [giveName]='yourName' (getDate)='afterGettingDate($event)'></app-my-profile> -->
 <app-header *ngIf='header'></app-header>
 <router-outlet></router-outlet>
 

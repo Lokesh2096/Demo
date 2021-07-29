@@ -25,7 +25,7 @@ const routes: Routes = [
     ]
     
   },
-  {    path: 'recforms', component: ReactiveTrailComponent},
+  {    path: 'rec-forms', component: ReactiveTrailComponent},
   {
     path: '', component: ReactiveTrailComponent
     //HeroesComponent
@@ -38,7 +38,7 @@ const routes: Routes = [
   //   path: 'mytodo', component: TodoAppComponent
   // },
   {
-    path: 'profile', component: MyProfileComponent
+    path: 'profile/:name', component: MyProfileComponent
   },
   {
     path: 'my-orders/:id', component: MyOrdersComponent

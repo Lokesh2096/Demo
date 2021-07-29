@@ -1,7 +1,11 @@
-<p>my-profile {{name}}!</p>
+<!-- <p>my-profile {{name}}!</p>
 <ng-container *ngIf='show'>
     Show is true
 </ng-container>
 
-<button (click)='today()'>Give Date</button>
+<button (click)='today()'>Give Date</button> -->
+<ng-container *ngIf='data'>
+    {{data | json}}
+</ng-container>
+
 

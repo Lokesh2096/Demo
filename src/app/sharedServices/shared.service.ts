@@ -4,14 +4,39 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { resolve } from '@angular/compiler-cli/src/ngtsc/file_system';
 import { BASE, UserListurl } from '../config';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HeroesComponent } from '../heroes/heroes.component';
+import { MyProfileComponent } from '../myaccount/my-profile/my-profile.component';
+import { DummyComponentComponent } from '../dummy-component/dummy-component.component';
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
   @Output() isLoggedin:EventEmitter<any> = new EventEmitter();
   url = 'https://jsonplaceholder.typicode.com/users';
+  categoryList = [
+    {category_id: 1, category: "GOLD"},
+    {category_id: 2, category: "DIAMOND"},
+    {category_id: 3, category: "PLATINUM"},
+    {category_id: 17, category: "GOLD-CHAINS"},
+    {category_id: 14, category: "MACHINERY"},
+    {category_id: 4, category: "SILVER"}
+  ];
+
+
+
+
   header:any;
-  constructor(private _service: NotificationsService,private http:HttpClient) { }
+  constructor(private modal:NgbModal, private _service: NotificationsService,private http:HttpClient) { }
+
+  getCategoryId(name:string){
+      if(this.categoryList.find(x=>x.category == name.toUpperCase())){
+        return this.categoryList.find(x=>x.category == name.toUpperCase()).category_id;
+      }
+      return null;
+      
+  }
+
   onFail(title,message){
     this._service.warn(title, message, {
       timeOut: 3000,
@@ -31,6 +56,18 @@ export class SharedService {
 
   getOrderRequest():Observable<any>{
      return this.http.get(this.url);
+  }
+
+  openHeroesComponent(){
+    this.modal.open(HeroesComponent,{ windowClass: 'myCustomModalClass2',backdrop : 'static'})
+  }
+  openFormComponent(){
+    const myprofile = this.modal.open(DummyComponentComponent,{ windowClass: 'myCustomModalClass2',backdrop : 'static'});
+    myprofile.componentInstance.name = 'hi my name is 12345';
+  }
+
+  closeModal(){
+    this.modal.dismissAll();
   }
 
 
@@ -63,6 +100,8 @@ export class SharedService {
     });
   }
  
+
+
   Put(api:any, formData:any,parameters={}) {
     return new Promise((resolve, reject) => {
 

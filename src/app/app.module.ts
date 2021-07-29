@@ -20,6 +20,8 @@ import { FormPracticeModule } from './form-practice/form-practice.module';
 import { LineonePipe } from './pipes/lineone.pipe';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DummyComponentComponent } from './dummy-component/dummy-component.component';
+import { NewPipesPipe } from './pipes/new-pipes.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,9 @@ import { HttpClientModule } from '@angular/common/http';
     LinkPipe,
     safePipe,
     LineonePipe,
-    HeaderComponent
+    HeaderComponent,
+    DummyComponentComponent,
+    NewPipesPipe
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,7 @@ import { HttpClientModule } from '@angular/common/http';
      }),
     
   ],
-  providers: [DatePipe,SharedService,LinkPipe,safePipe],
+  providers: [DatePipe,SharedService,LinkPipe,safePipe,NewPipesPipe],
   exports:[],
   entryComponents:[],
   bootstrap: [AppComponent]

@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup,Validators } from '@angular/forms';
+import { debounce, debounceTime, distinct, map, share } from 'rxjs/operators';
+import { SharedService } from 'src/app/sharedServices/shared.service';
 
 @Component({
   selector: 'app-reactive-trail',
@@ -9,7 +12,7 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup,Validat
 export class ReactiveTrailComponent implements OnInit {
   information:FormGroup;
   informationFB:FormArray;
-  constructor(private fb:FormBuilder) {
+  constructor(private fb:FormBuilder,private http:HttpClient,private shared:SharedService) {
     this.information = new FormGroup({
       type:new FormControl('email',[Validators.required]),
       forEmail:new FormGroup({
@@ -58,8 +61,15 @@ export class ReactiveTrailComponent implements OnInit {
     })
     // console.log('LOKESH'.toLowerCase().replace('lokes','-'));
     
-    this.information.get('address').valueChanges.subscribe((data)=>{console.log(data)})
+    this.information.get('phone').valueChanges.subscribe((data)=>{
+      this.getdata(data);
+    })
+    // this.information.get('phone').valueChanges.pipe(debounceTime(1000),distinct()).subscribe((data)=>{
+    //   this.getdata(data);
+    // })
+    
    }
+   
 validationErrors = {
   'email':{
     'email':'Enter a Valid Email',
@@ -103,6 +113,20 @@ Errors = {
       phone:'9782200014'
     });
   }
+  getdata(value){
+    let id = this.shared.getCategoryId(value);
+    console.log(id)
+    this.http.post('https://api.savyajewelsbusiness.com/api/subcategory',{"category_id":id}).pipe(map(data=>data['data'])).subscribe(data=>{
+      console.log(data);
+    },
+    err=>{
+      if(err.status == 401){
+        this.shared.onFail('Invalid Category','Please Enter a valid category name');
+      }
+      
+    }
+    )
+   }
 
   setValidationsOnPhone(){
 
