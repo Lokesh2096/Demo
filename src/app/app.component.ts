@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { Router,Event, NavigationStart, NavigationEnd } from '@angular/router';
 import { SharedService } from './sharedServices/shared.service';
 
 @Component({
@@ -14,7 +14,24 @@ export class AppComponent implements OnInit{
   isLoggedIn = false;
   login:any;
   name:any;
+  header:boolean = true;
   constructor(private date:DatePipe,private router:Router,protected DOM: DomSanitizer,public shared:SharedService){
+    this.router.events.subscribe((event:Event)=>{
+      if(event instanceof NavigationStart){
+        console.log('Navigation Start',this.router.url);
+      }else if(event instanceof NavigationEnd){
+        if(this.router.url.includes('/my-orders')){
+          this.header= false;
+        }else{
+          this.header = true;
+        }
+        console.log('NavigationEnd',this.router.url);
+      }
+    })
+
+
+
+
    this.shared.isLoggedin.subscribe((data)=>{
       console.log('In event Emitter');
       if(data){
@@ -27,6 +44,7 @@ export class AppComponent implements OnInit{
       }
     });
   }
+
   youtubeLink = 'https://www.youtube.com/embed/87fTHhPVdE4';
   yourName = 'Hi how are you';
   ngOnInit(){
@@ -48,7 +66,7 @@ addto(){
   
 }
   goToOrders(){
-    this.router.navigate(['my-orders','COD'],{queryParams:{type:'Online'}});
+    this.router.navigate(['my-orders','COD'],{queryParams:{type:'COD',id:2}});
   }
   style1 = true;
   title = 'angular-tour-of-heroes';

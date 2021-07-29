@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveTrailComponent } from './reactive-trail/reactive-trail.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { LinkPipe } from '../pipes/link.pipe';
 
 
 
@@ -9,7 +11,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [ReactiveTrailComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    RouterModule,
+  ],
+  providers:[LinkPipe]
 })
 export class FormPracticeModule { }

@@ -1,9 +1,14 @@
 <!-- Hi My name is lokesh -->
-<!-- {{today}} -->
-<!-- {{today | date:'dd/MM/yyyy'}}
-{{getDate()}} -->
+{{'Lorem ipsum dummy text' | link : true}}
+{{today | date:'shortDate'}} <br>
+fullDate -> {{getDate()}} 
+{{'3' | currency:'OMR'}}
 
 
+<!-- {{today}} <br>
+{{today | date:'short'}} <br>
+{{getDate()}}  -->
+<!-- {{'3' | currency:'INR'}} -->
 <!-- <ng-container *ngIf='isLoggedIn'>
   <h3>I am Logged in</h3>
 </ng-container>
@@ -58,6 +63,21 @@
 
   <button [ngStyle]="{'background-color': style1 ? 'red' : 'green' }" (click)='style1 = !style1' >Delete</button>
 </div> -->
+
+<!-- <iframe width="560" height="315" [src]="youtubeLink | safe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+<!-- 
+<a href="javascript:void(0)" routerLink='{{"my orders/ORD123" | link}}' [queryParams]="{'id':2,'type':'COD'}" >GO to orders</a>
+<a href="javascript:void(0)" (click)='goToOrders()' >GO to orders click</a> -->
+
+
+
+
+<br>
+<input type="text" [(ngModel)]='yourName'  name='name'>
+
+<!-- <app-my-profile [giveName]='yourName' (getDate)='afterGettingDate($event)'></app-my-profile> -->
+<app-header *ngIf='header'></app-header>
 <router-outlet></router-outlet>
+
 <simple-notifications></simple-notifications>
 

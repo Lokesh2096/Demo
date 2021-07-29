@@ -1,1 +1,9 @@
-<p>heroes works!</p>
+<!-- {{orders | json}} -->
+<button (click)='closeModal()'>close</button>
+<div *ngIf='orders$ | async as orderList'>
+{{orderList | json}}
+</div>
+
+<div>
+    <button (click)='openComponetAgain()'>Heroes</button>
+</div>

@@ -17,13 +17,22 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { LinkPipe, safePipe } from './pipes/link.pipe'; 
 import { FormPracticeModule } from './form-practice/form-practice.module';
+import { LineonePipe } from './pipes/lineone.pipe';
+import { HeaderComponent } from './header/header.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DummyComponentComponent } from './dummy-component/dummy-component.component';
+import { NewPipesPipe } from './pipes/new-pipes.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
     NotFoundComponent,
     LinkPipe,
-    safePipe
+    safePipe,
+    LineonePipe,
+    HeaderComponent,
+    DummyComponentComponent,
+    NewPipesPipe
   ],
   imports: [
     BrowserModule,
@@ -32,6 +41,7 @@ import { FormPracticeModule } from './form-practice/form-practice.module';
     NgbModule,
     FormPracticeModule,
     MyaccountModule,
+    HttpClientModule,
     TodoModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
@@ -49,7 +59,7 @@ import { FormPracticeModule } from './form-practice/form-practice.module';
      }),
     
   ],
-  providers: [DatePipe,SharedService,LinkPipe,safePipe],
+  providers: [DatePipe,SharedService,LinkPipe,safePipe,NewPipesPipe],
   exports:[],
   entryComponents:[],
   bootstrap: [AppComponent]
