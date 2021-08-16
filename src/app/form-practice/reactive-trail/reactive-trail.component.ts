@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup,Validators } from '@angular/forms';
 import { debounce, debounceTime, distinct, map, share } from 'rxjs/operators';
 import { SharedService } from 'src/app/sharedServices/shared.service';
@@ -11,6 +11,10 @@ import { SharedService } from 'src/app/sharedServices/shared.service';
 })
 export class ReactiveTrailComponent implements OnInit {
   information:FormGroup;
+  @ViewChild('itDiv') itDivTs:ElementRef<any>;
+  @ViewChild('abcd') DivElement:ElementRef<any>;
+  @ViewChild('anything') abcd:ElementRef;
+  simple = true;
   informationFB:FormArray;
   constructor(private fb:FormBuilder,private http:HttpClient,private shared:SharedService) {
     this.information = new FormGroup({
@@ -20,7 +24,7 @@ export class ReactiveTrailComponent implements OnInit {
         confirmEmail:new FormControl('',[Validators.required,Validators.email])
       },{validators:this.confirmEmail})
     ,
-      phone:new FormControl(''),
+      phone:new FormControl('',Validators.minLength(10)),
       address: new FormArray(
         [
           this.addNewAddress()
@@ -56,10 +60,10 @@ export class ReactiveTrailComponent implements OnInit {
     //   }
     // })
     this.information.get('type').valueChanges.subscribe((data)=>{
-      if(data == 'phone')
-      console.log(data);
+      
+    //  console.log(data);
     })
-    // console.log('LOKESH'.toLowerCase().replace('lokes','-'));
+  console.warn('LOKESH'.toLowerCase().replace('lokes','-'));
     
     this.information.get('phone').valueChanges.subscribe((data)=>{
       this.getdata(data);
@@ -70,6 +74,7 @@ export class ReactiveTrailComponent implements OnInit {
     
    }
    
+
 validationErrors = {
   'email':{
     'email':'Enter a Valid Email',
@@ -115,9 +120,9 @@ Errors = {
   }
   getdata(value){
     let id = this.shared.getCategoryId(value);
-    console.log(id)
+   // console.log(id)
     this.http.post('https://api.savyajewelsbusiness.com/api/subcategory',{"category_id":id}).pipe(map(data=>data['data'])).subscribe(data=>{
-      console.log(data);
+     // console.log(data);
     },
     err=>{
       if(err.status == 401){
@@ -246,5 +251,28 @@ Errors = {
     //   })
     // })
   }
+  // ngOnDestroy(){
+  //   console.log('Destroy Running');
+  // }
+  ngAfterViewInit(){
+    // console.log(document.getElementById('iDiv'))
+    console.log(this.itDivTs.nativeElement.classList.add('red'));
+  }
+  iAmClickedDiv(value){
+    console.log('clicked on'+ value);
+  }
+  iAmClickedButton(value){
+    value.stopPropagation();
+    console.log('clicked on'+ 'Button');
+  }
+  changeElementRef(){
+    this.simple = !this.simple;
+    // this.abcd.nativeElement.classList.add('red');
+    // this.abcd.nativeElement.classList.remove('red');
+   // this.abcd.nativeElement.classList.toggle('red');
+  }
+  // ngAfterViewChecked(){
+  //   console.log('Ater View Running');
+  // }
 
 }

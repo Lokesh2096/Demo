@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveTrailComponent } from './reactive-trail/reactive-trail.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { LinkPipe } from '../pipes/link.pipe';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -12,8 +12,9 @@ import { LinkPipe } from '../pipes/link.pipe';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    SharedModule,
     RouterModule,
   ],
-  providers:[LinkPipe]
+ // providers:[LinkPipe]
 })
 export class FormPracticeModule { }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,8 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  scrHeight = window.innerHeight;
+  scrWidth = window.innerWidth;
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+        this.scrHeight = window.innerHeight;
+        this.scrWidth = window.innerWidth;
+    console.log(this.scrHeight,this.scrWidth);
+  }
+  constructor() {
+   // localStorage.setItem('Abcd','Egfh');
+   }
   categories = [
     {category_id:1,name:'Gold Jewelleries'},
     {category_id:2,name:'Diamond Jewelleries'},

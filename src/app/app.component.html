@@ -1,8 +1,8 @@
 <!-- Hi My name is lokesh -->
-{{'Lorem ipsum dummy text' | link : true}}
+<!-- {{'Lorem ipsum dummy text' | link : true}}
 {{today | date:'shortDate'}} <br>
 fullDate -> {{getDate()}} 
-{{'3' | currency:'OMR'}}
+{{'3' | currency:'OMR'}} -->
 
 
 <!-- {{today}} <br>
@@ -38,11 +38,7 @@ fullDate -> {{getDate()}}
 <app-my-profile [giveName]='yourName' (getDate)='afterGettingDate($event)'></app-my-profile>
 
 
-<div class="login logout">
-  <button (click)='shared.login()'>login</button>
-  <button (click)='shared.logout()'>logout</button>
-  <button routerLink='/myaccount/offers'>MyAccount</button>
-</div>
+
 
 <div>
   <a href="javascript:void(0)" [routerLink]='["mytodo/abcd","COD"]' >GO to Create Tasks</a>
@@ -72,12 +68,21 @@ fullDate -> {{getDate()}}
 
 
 
-<br>
-<input type="text" [(ngModel)]='yourName'  name='name'>
+<!-- <br>
+<input type="text" [(ngModel)]='yourName' name='name'> -->
 
 <!-- <app-my-profile [giveName]='yourName' (getDate)='afterGettingDate($event)'></app-my-profile> -->
 <app-header *ngIf='header'></app-header>
+<!-- <input type="text"  (blur)='show()'  placeholder="Enter a number">
+<div>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Error porro inventore sint deserunt animi quod, molestiae iusto voluptatum quo, possimus iure magni eum, ipsum fuga soluta impedit accusantium tenetur distinctio.
+</div> -->
 <router-outlet></router-outlet>
-
+<div class="login logout">
+  <button (click)='shared.login()'>login</button>
+  <button (click)='shared.logout()'>logout</button>
+  <button routerLink='/myaccount/offers'>MyAccount</button>
+</div>
+{{isLoggedIn}}
 <simple-notifications></simple-notifications>
 

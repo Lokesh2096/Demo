@@ -1,9 +1,9 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router,Event, NavigationStart, NavigationEnd } from '@angular/router';
 import { SharedService } from './sharedServices/shared.service';
-
+import { isPlatformBrowser } from '@angular/common';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,11 +15,16 @@ export class AppComponent implements OnInit{
   login:any;
   name:any;
   header:boolean = true;
-  constructor(private date:DatePipe,private router:Router,protected DOM: DomSanitizer,public shared:SharedService){
+  constructor(@Inject(PLATFORM_ID) private _platformId:any,private date:DatePipe,private router:Router,protected DOM: DomSanitizer,public shared:SharedService){
+
+
+    if(isPlatformBrowser(_platformId)){
     this.router.events.subscribe((event:Event)=>{
       if(event instanceof NavigationStart){
+
         console.log('Navigation Start',this.router.url);
       }else if(event instanceof NavigationEnd){
+        
         if(this.router.url.includes('/my-orders')){
           this.header= false;
         }else{
@@ -28,12 +33,12 @@ export class AppComponent implements OnInit{
         console.log('NavigationEnd',this.router.url);
       }
     })
-
-
+    }
 
 
    this.shared.isLoggedin.subscribe((data)=>{
       console.log('In event Emitter');
+      console.log(data);
       if(data){
         // api -> name
 
@@ -62,6 +67,9 @@ export class AppComponent implements OnInit{
   bypass(url){
     return this.DOM.bypassSecurityTrustResourceUrl(url);
   }
+  show(){
+    console.log('Blur')
+  }
 addto(){
   
 }
@@ -70,7 +78,7 @@ addto(){
   }
   style1 = true;
   title = 'angular-tour-of-heroes';
-  show=true;
+//  show=true;
  // name =' Asik Gazi';
   today:any = new Date();
   oops=[
@@ -100,7 +108,7 @@ addto(){
   }
   getDate(){
     let date = this.date.transform(this.today,'fullDate');
-    console.log('Running');
+    // console.log('Running');
     return date;
   }
 

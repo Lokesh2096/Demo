@@ -1,4 +1,4 @@
-import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { SharedService } from 'src/app/sharedServices/shared.service';
 
 
@@ -9,7 +9,7 @@ import { SharedService } from 'src/app/sharedServices/shared.service';
 })
 export class TodoCreateComponent implements OnInit {
   currentTask='';
-  @Output() getTask:EventEmitter<any> = new EventEmitter();
+  @Output() sendData:EventEmitter<any> = new EventEmitter();
   constructor(private sharedService:SharedService) { }
   show = [{
     "id": 28,
@@ -21,16 +21,14 @@ export class TodoCreateComponent implements OnInit {
     "id": 89,
     "Title": "England"
   }]
+
+  changeTask(){
+    if(this.currentTask){
+    this.sendData.emit(this.currentTask)}
+    this.currentTask = '';
+  }
   ngOnInit(): void {
   }
-  sendTask(){
-    if(this.currentTask){
-      this.getTask.emit(this.currentTask);
-      this.currentTask='';
-      this.sharedService.onSuccess('Task Created','Task Created Successfully !');
-    }else{
-      this.sharedService.onFail('Enter Task','Please Enter a Task');
-    }
-  }
+ 
 
 }

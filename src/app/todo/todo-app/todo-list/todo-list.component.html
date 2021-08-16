@@ -1,13 +1,22 @@
 <h2>current List of tasks</h2>
 <ng-container *ngIf='taskList.length == 0'>
- <h1>Currently There are no tasks for you</h1>
+ <h1>{{'Currently There are no tasks for you' | link}}</h1>
 </ng-container>
 
 
 <table>
     <tr><th>S. No</th><th>Name</th><th>isDone</th><th>Action</th></tr>
-    <tr *ngFor='let task of taskList'><td>{{task.id+1}}</td><td [ngStyle]='{"text-decoration":task.isDone ? "line-through":"none"}'>{{task.taskName}}</td><td>{{task.isDone}}</td>
-        <td><button (click)='checkTask(task.id)'>
+    <tr *ngFor='let task of taskList'><td>{{task.id+1}}</td>
+
+
+        <td>
+
+        </td>
+        <td [style.text-decoration]='task.isDone ? "line-through":"none"'>
+            {{task.taskName}}</td><td>{{task.isDone}}</td>
+        <td [ngStyle]='{"text-decoration":task.isDone ? "line-through":"none" }'>
+            {{task.taskName}}</td><td>{{task.isDone}}</td>
+        <td><button [ngClass]='{"btn-danger":task.taskName == "subarata"}' (click)='checkTask(task.id)'>
 
             <ng-container *ngIf='task.isDone'>
                 Not Done
@@ -15,7 +24,19 @@
             <ng-container *ngIf='!task.isDone'>
                 Done
             </ng-container>
-        </button></td></tr>
+        </button>
+    </td>
+    <td><button [class.btn-danger]='task.taskName == "subarata"' (click)='checkTask(task.id)'>
+
+        <ng-container *ngIf='task.isDone'>
+            Not Done
+        </ng-container>
+        <ng-container *ngIf='!task.isDone'>
+            Done
+        </ng-container>
+    </button>
+</td>
+</tr>
 </table>
 <h2>current List of tasks Done</h2>
 <ng-container *ngFor='let task of taskDone;let i = index'>

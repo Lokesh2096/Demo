@@ -5,10 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeroesComponent } from './heroes/heroes.component';
-import { DatePipe } from '@angular/common';
+import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MyaccountModule } from './myaccount/myaccount.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TodoModule } from './todo/todo.module';
 import { SharedService } from './sharedServices/shared.service';
 import { SimpleNotificationsModule } from 'angular2-notifications';
@@ -22,27 +22,30 @@ import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DummyComponentComponent } from './dummy-component/dummy-component.component';
 import { NewPipesPipe } from './pipes/new-pipes.pipe';
+import { OnclickDirective } from './directives/onclick.directive';
+import { SeoService } from './seo.service';
+import { SharedModule } from './shared/shared.module';
+import { NewBasicComponent } from './new-basic/new-basic.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
     NotFoundComponent,
-    LinkPipe,
-    safePipe,
     LineonePipe,
     HeaderComponent,
     DummyComponentComponent,
-    NewPipesPipe
+    NewBasicComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
+    SharedModule,
     FormsModule,
+    ReactiveFormsModule,
     NgbModule,
     FormPracticeModule,
     MyaccountModule,
     HttpClientModule,
-    TodoModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
@@ -59,7 +62,7 @@ import { NewPipesPipe } from './pipes/new-pipes.pipe';
      }),
     
   ],
-  providers: [DatePipe,SharedService,LinkPipe,safePipe,NewPipesPipe],
+  providers: [DatePipe,SharedService,SeoService],
   exports:[],
   entryComponents:[],
   bootstrap: [AppComponent]

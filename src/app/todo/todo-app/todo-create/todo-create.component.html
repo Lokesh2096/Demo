@@ -1,2 +1,6 @@
 <h3>Please Enter Task</h3>
-<input [(ngModel)]='currentTask' placeholder="Please Enter the Task" type="text" (keyup.enter)='sendTask()' name='enter_task'>
+<input [(ngModel)]='currentTask' placeholder="Please Enter the Task" type="text" (keydown.enter)='changeTask()' name='enter_task'>
+
+
+
+{{currentTask}}

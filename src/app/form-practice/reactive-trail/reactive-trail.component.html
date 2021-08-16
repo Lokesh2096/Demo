@@ -1,16 +1,40 @@
 
 
+{{'hello there'}}
+<div id='itDiv' #itDiv>
+  Impedit ea aperiam veritatis quo vitae labore
+</div>
+<div style="color:red" appOnclick>
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit ea aperiam veritatis quo vitae labore, laboriosam beatae id repudiandae. Minus delectus ad, tempora ipsam recusandae odio vero tempore repudiandae libero!
+</div>
 
 
+<p>
+
+</p>
 <a href="javascript:void(0)" routerLink='{{"/my-orders/ORD123"}}' [queryParams]="{'id':2,'type':'COD'}" >GO to orders</a>
+<button class='btn-danger' >
+  Element Ref
+</button> <br>
+<ng-template #anything2>
+  Lorem
+</ng-template>
+<div id='lorem' *ngIf='simple; then anything else anything2'>
 
+</div>
+<ng-template #anything>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime provident ab aspernatur modi quod? Facilis dolore, reiciendis totam distinctio velit laudantium adipisci non, sunt consectetur porro vero, ut architecto veritatis.
+</ng-template>
 <form [formGroup]='information' (ngSubmit)='showValue(information)'>
+
   <div class="mb-3">
     <label for="phone">phone</label>
     <input type="radio" name="type"  formControlName='type' id="phone" value="phone">
 
   </div>
-  
+  <div id='EmptyDiv' #abcd>
+abvcsdas
+  </div>
 
     <div formGroupName='forEmail' class="mb-3">
       <div *ngIf='Errors.forEmail'>
@@ -100,5 +124,16 @@
 
       </div>
 </form>
+
 {{information.valid}} <br>
 {{information.value | json}}
+<br>
+<br>
+<br>
+<br>
+<div (click)='iAmClickedDiv("DIV")' style="height:100px;width:300px;background-color:green;">
+  tempora ipsam recusandae odio vero tempor
+  <button (click)='iAmClickedButton($event)'>
+    Click Me
+</button>
+</div>

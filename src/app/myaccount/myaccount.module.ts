@@ -6,6 +6,7 @@ import { AccountComponent } from './account/account.component';
 import { MyoffersComponent } from './myoffers/myoffers.component';
 import { MywishlistComponent } from './mywishlist/mywishlist.component';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -13,6 +14,7 @@ import { RouterModule } from '@angular/router';
   declarations: [MyProfileComponent, MyOrdersComponent, AccountComponent, MyoffersComponent, MywishlistComponent],
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule
   ],
   exports:[MyProfileComponent]

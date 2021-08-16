@@ -1,0 +1,17 @@
+<input type="text" (blur)='onBlur()' placeholder="enter name">
+
+<select (change)='onChange($event.target.value)'>
+    <ng-container *ngFor='let state of states'>
+        <option [selected]='state == "Rajasthan"' [value]="state">{{state}}</option>
+    </ng-container>
+    
+</select>
+<input type="checkbox" [formControl]='email' name='email' (change)='onChangeCheckbox(email.value)' value='Lokesh'>
+<div class="card" style="width: 18rem;padding:80px;" (mouseover)="onMouseIn()" (mouseout)="onMouseOut()">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>

@@ -13,7 +13,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule.forChild([{
+    RouterModule.forChild([
+    {
       path: '', component: TodoAppComponent
     },
     {

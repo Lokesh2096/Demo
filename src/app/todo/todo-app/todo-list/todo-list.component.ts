@@ -9,12 +9,20 @@ import { ToDo } from '../todo-interface/todo.interface';
 export class TodoListComponent implements OnInit {
   @Input() giveTask = '';
   taskList:ToDo[] = [];
-
+  style: "line-through" | "none" = "none";
   taskDone:ToDo[] = [];
   taskNotDone:ToDo[] = [];
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  changeStyle(isDone){
+    if(isDone){
+      this.style = "line-through";
+    }else{
+      this.style = "none";
+    }
   }
 
   ngOnChanges(changes: SimpleChanges){
@@ -31,6 +39,7 @@ export class TodoListComponent implements OnInit {
      let index = this.taskList.indexOf(task);
      if(index != -1){
       this.taskList[index].isDone = !this.taskList[index].isDone;
+    //  this.changeStyle(this.taskList[index].isDone);
      }
     }
     this.taskDone = this.taskList.filter((x:ToDo)=>x.isDone == true);
