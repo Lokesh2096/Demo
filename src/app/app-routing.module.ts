@@ -17,21 +17,15 @@ import { CategoryResolveService } from './resolver/category.resolve.service';
 
 
 const routes: Routes = [
-  {
-    path: 'myaccount', component: AccountComponent,
-    children:[
-      {    path: '', redirectTo:'profile',pathMatch:'full' },
-      {    path: 'orders', component: MyOrdersComponent, canActivate:[LoggedinGuard]},
-      {    path: 'offers', component: MyoffersComponent, canActivate:[LoggedinGuard] },
-      {    path: 'wishlist', component: MywishlistComponent, canActivate:[LoggedinGuard] },
-      {    path: 'profile', component: MyProfileComponent, canActivate:[LoggedinGuard] },
-    ]
-    
-  },
+  
   {    path: 'rec-forms', component: ReactiveTrailComponent},
   {
     path: '', component: ReactiveTrailComponent
     //HeroesComponent
+  },
+  {
+    path: 'myaccount',
+    loadChildren: () => import('./myaccount/myaccount.module').then(module => module.MyaccountModule)
   },
   {
     path: 'mytodo',
@@ -41,7 +35,7 @@ const routes: Routes = [
   //   path: 'mytodo', component: TodoAppComponent
   // },
   {
-    path: 'profile/:name/jewellery/:id', component: MyProfileComponent,resolve:{categoryData:CategoryResolveService}
+    path: 'profile/:name/jewellery/:id', component: MyProfileComponent
   },
   {
     path: 'my-orders/:id', component: MyOrdersComponent

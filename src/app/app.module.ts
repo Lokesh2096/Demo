@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { rootReducer } from './store/reducer';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -26,6 +26,7 @@ import { OnclickDirective } from './directives/onclick.directive';
 import { SeoService } from './seo.service';
 import { SharedModule } from './shared/shared.module';
 import { NewBasicComponent } from './new-basic/new-basic.component';
+import { StoreModule } from '@ngrx/store';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,7 @@ import { NewBasicComponent } from './new-basic/new-basic.component';
     ReactiveFormsModule,
     NgbModule,
     FormPracticeModule,
-    MyaccountModule,
+  //  MyaccountModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
@@ -60,6 +61,7 @@ import { NewBasicComponent } from './new-basic/new-basic.component';
        pauseOnHover: true,
        clickToClose: true
      }),
+    StoreModule.forRoot(rootReducer),
     
   ],
   providers: [DatePipe,SharedService,SeoService],
