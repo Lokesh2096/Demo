@@ -24,29 +24,30 @@ data:any;
 // this.data = this.router.snapshot.data['categoryData'];
  //this.getdata()
     // console.log(this.data);
- const loading$ = this.store.select(getCategoryLoading);
-      const loaded$ = this.store.select(getCategoryLoaded);
-      combineLatest([loaded$,loading$]).subscribe(data=>{
-        if(!data[0] && !data[1]){
-          this.store.dispatch(new CategoryListRequestAction());
-          this.getdata();
-        }else if(data[0] && !data[1]){
-            this.store.select(getCategory).subscribe((datas)=>{
-              this.data = datas;
-            });
-        }
-      })
-  //  this.router.queryParams.subscribe((data)=>{
-  //     this.http.post('https://api.savyajewelsbusiness.com/api/subcategory',{"category_id":data['id']}).subscribe(data=>{
-  //       this.data = data;
-  //       console.log(this.data['category']['seo_title']);
-  //        this.seo.updateTitle(this.data['category']['seo_title']);
-  //        this.seo.changeMetaDescription(this.data['category']['seo_description'])
-  //       this.shared.closeModal();
-  //       console.log(data);
-  //     })
-  //     console.log(data['id']);
-  //   })
+
+   this.router.queryParams.subscribe((categoryData)=>{
+    const loading$ = this.store.select(getCategoryLoading);
+    const loaded$ = this.store.select(getCategoryLoaded);
+    combineLatest([loaded$,loading$]).subscribe(data=>{
+      if(!data[0] && !data[1]){
+        this.store.dispatch(new CategoryListRequestAction());
+        this.getdata(categoryData['id']);
+      }else if(data[0] && !data[1]){
+        this.store.select(getCategory).subscribe((datas)=>{
+
+        //  this.data = datas;
+        // .find , .filter
+          if(datas.find(x=>x.params == categoryData['id'])){
+            this.data = datas.find(x=>x.params == categoryData['id']);
+          }else{
+            this.store.dispatch(new CategoryListRequestAction());
+            this.getdata(categoryData['id']);
+          }
+
+        });
+      }
+    })
+  })
     // this.router.queryParamMap.subscribe((data)=>{
     //   this.http.post('https://api.savyajewelsbusiness.com/api/subcategory',{"category_id":data.get('id')}).subscribe(data=>{
     //     this.data = data;
@@ -62,11 +63,11 @@ data:any;
     //  console.log(data.name)
    // })
    }
-   getdata(){
+   getdata(value){
     this.shared.openFormComponent()
-    this.http.post('https://api.savyajewelsbusiness.com/api/subcategory',{"category_id":1}).subscribe(data=>{
+    this.http.post('https://api.savyajewelsbusiness.com/api/subcategory',{"category_id":value}).subscribe(data=>{
       this.data = data['data'];
-      this.store.dispatch(new CategoryListSuccessAction({data:this.data}));
+      this.store.dispatch(new CategoryListSuccessAction({data:{params:value,data:this.data}}));
       this.shared.closeModal();
       console.log(...this.data);
     })
